@@ -18,12 +18,12 @@ export class ProductServices {
   }
 
   async updateProductById(id: String, attr: IProduct) {
-    const result = await Product.findByIdAndUpdate(id, attr, { new: true })
-    return result
+    const product = await Product.findByIdAndUpdate(id, attr, { new: true })
+    return product
   }
 
   async deleteProductById(id: String) {
-    const result = await Product.findByIdAndDelete(id)
-    return result
+    const product = await Product.findByIdAndDelete(id)
+    return product
   }
 }

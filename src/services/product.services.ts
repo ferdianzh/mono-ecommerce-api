@@ -12,17 +12,17 @@ export class ProductServices {
     return products
   }
 
-  async getProductById(id: String) {
+  async getProductById(id: string) {
     const product = await Product.findById(id)
     return product
   }
 
-  async updateProductById(id: String, attr: IProduct) {
+  async updateProductById(id: string, attr: IProduct) {
     const product = await Product.findByIdAndUpdate(id, attr, { new: true })
     return product
   }
 
-  async deleteProductById(id: String) {
+  async deleteProductById(id: string) {
     const product = await Product.findByIdAndDelete(id)
     return product
   }

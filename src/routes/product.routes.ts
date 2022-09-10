@@ -7,8 +7,10 @@ const productServices = new ProductServices()
 
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { name, description = '', price, stock } = req.body
-    const result = await productServices.addProduct({ name, description, price, stock })
+    const { name, description = '', sale_price, restock_price, stock } = req.body
+    const result = await productServices.addProduct({
+      name, description, sale_price, restock_price, stock
+    })
 
     return res.status(201).send({
       status: 'success',

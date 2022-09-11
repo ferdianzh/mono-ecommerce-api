@@ -3,11 +3,13 @@ import mongoose from 'mongoose'
 import { json } from 'body-parser'
 
 import { productRouter } from './routes/product.routes'
+import { saleRouter } from './routes/sale.routes'
 
 const app = express()
 app.use(json())
 
 app.use('/api/products', productRouter)
+app.use('/api/sales', saleRouter)
 
 mongoose.connect('mongodb+srv://mono_developer:mono_developer@learn.kndkh.mongodb.net/mono_ecommerce?retryWrites=true&w=majority')
   .then(() => console.log('db connection success'))

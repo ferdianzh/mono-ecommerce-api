@@ -3,8 +3,7 @@ import mongoose from "mongoose"
 interface IProduct {
   name: string
   description: string
-  sale_price: number
-  restock_price: number
+  price: number
   stock: number
 }
 
@@ -15,8 +14,7 @@ interface ProductModelInterface extends mongoose.Model<ProductDoc> {
 interface ProductDoc extends mongoose.Document {
   name: string
   description: string
-  sale_price: number
-  restock_price: number
+  price: number
   stock: number
 }
 
@@ -29,11 +27,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  sale_price: {
-    type: Number,
-    required: true,
-  },
-  restock_price: {
+  price: {
     type: Number,
     required: true,
   },

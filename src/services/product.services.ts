@@ -7,8 +7,14 @@ export class ProductServices {
     return product
   }
 
-  async getProducts() {
-    const products = await Product.find()
+  async getProducts(ids: string[] = []) {
+    let products
+    if (ids.length == 0) {
+      products = await Product.find()
+    } else {
+      products = await Product.find({ '_id': { $in: ids } })
+    }
+    
     return products
   }
 
@@ -24,6 +30,20 @@ export class ProductServices {
 
   async deleteProductById(id: string) {
     const product = await Product.findByIdAndDelete(id)
+    return product
+  }
+
+  async increaseStock(id: string, amount: number) {
+    const product = await Product.findById(id)
+    product!.stock += amount
+    product!.save()
+    return product
+  }
+
+  async decreaseStock(id: string, amount: number) {
+    const product = await Product.findById(id)
+    product!.stock -= amount
+    product!.save()
     return product
   }
 }

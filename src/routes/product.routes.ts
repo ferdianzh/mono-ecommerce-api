@@ -7,14 +7,14 @@ const productServices = new ProductServices()
 
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { name, description = '', sale_price, restock_price, stock } = req.body
-    const result = await productServices.addProduct({
-      name, description, sale_price, restock_price, stock
+    const { name, description = '', price, stock } = req.body
+    const product = await productServices.addProduct({
+      name, description, price, stock
     })
 
     return res.status(201).send({
       status: 'success',
-      data: result,
+      data: product,
     })
   } catch (e: any) {
     if (e instanceof Error.ValidationError) {
@@ -38,11 +38,11 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const result = await productServices.getProductById(req.params.id)
+    const product = await productServices.getProductById(req.params.id)
     
     return res.status(200).send({
       status: 'success',
-      data: result,
+      data: product,
     })
   } catch (e: any) {
     return res.status(404).send({
@@ -54,11 +54,11 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.patch('/:id', async (req: Request, res: Response) => {
   try {
-    const result = await productServices.updateProductById(req.params.id, req.body)
+    const product = await productServices.updateProductById(req.params.id, req.body)
     
     return res.status(200).send({
       status: 'success',
-      data: result,
+      data: product,
     })
   } catch (e: any) {
     return res.status(404).send({
@@ -70,11 +70,11 @@ router.patch('/:id', async (req: Request, res: Response) => {
 
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const result = await productServices.deleteProductById(req.params.id)
+    const product = await productServices.deleteProductById(req.params.id)
     
     return res.status(200).send({
       status: 'success',
-      data: result,
+      data: product,
     })
   } catch (e: any) {
     return res.status(404).send({

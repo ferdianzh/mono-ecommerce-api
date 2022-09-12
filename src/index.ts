@@ -15,7 +15,7 @@ app.use(cors())
 app.use('/api/products', productRouter)
 app.use('/api/sales', saleRouter)
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USER}:${process.env.MONGO_ATLAS_PASSWORD}@learn.kndkh.mongodb.net/${process.env.MONGO_ATLAS_COLLECTION}?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USER}:${process.env.MONGO_ATLAS_PASSWORD}@${process.env.MONGO_ATLAS_URL}/${process.env.MONGO_ATLAS_COLLECTION}?retryWrites=true&w=majority`)
   .then(() => console.log('db connection success'))
   .catch((err) => console.log(`db connection fail : ${err.message}`))
 

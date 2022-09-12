@@ -4,7 +4,10 @@ Simple e-commerce API created using Node and MongoDB
 
 ### Setup Instruction
 
-- Clone repository
+- Clone repository dengan perintah:
+  ```bash
+  git clone https://github.com/ferdianzh/mono-ecommerce-api.git
+  ```
 
 - Ubah nama file **.env-copy** menjadi **.env**
 

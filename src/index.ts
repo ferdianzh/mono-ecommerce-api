@@ -1,7 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import { json } from 'body-parser'
 import * as dotenv from 'dotenv'
+import { json } from 'body-parser'
+import cors from 'cors'
 
 import { productRouter } from './routes/product.routes'
 import { saleRouter } from './routes/sale.routes'
@@ -9,6 +10,7 @@ import { saleRouter } from './routes/sale.routes'
 dotenv.config()
 const app = express()
 app.use(json())
+app.use(cors())
 
 app.use('/api/products', productRouter)
 app.use('/api/sales', saleRouter)

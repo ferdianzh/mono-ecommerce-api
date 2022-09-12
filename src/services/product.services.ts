@@ -20,23 +20,25 @@ export class ProductServices {
 
   async getProductById(id: string) {
     const product = await Product.findById(id)
+    if (product == null) {
+      throw { message: `document with id = ${id} not found` }
+    }
     return product
   }
 
   async updateProductById(id: string, attr: IProduct) {
     const product = await Product.findByIdAndUpdate(id, attr, { new: true })
+    if (product == null) {
+      throw { message: `document with id = ${id} not found` }
+    }
     return product
   }
 
   async deleteProductById(id: string) {
     const product = await Product.findByIdAndDelete(id)
-    return product
-  }
-
-  async increaseStock(id: string, amount: number) {
-    const product = await Product.findById(id)
-    product!.stock += amount
-    product!.save()
+    if (product == null) {
+      throw { message: `document with id = ${id} not found` }
+    }
     return product
   }
 

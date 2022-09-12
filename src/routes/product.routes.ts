@@ -47,7 +47,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   } catch (e: any) {
     return res.status(404).send({
       status: 'fail',
-      message: 'data not found',
+      message: `document with id = ${req.params.id} not found`,
     })
   }
 })

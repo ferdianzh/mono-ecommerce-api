@@ -39,7 +39,7 @@ app.use((0, body_parser_1.json)());
 app.use((0, cors_1.default)());
 app.use('/api/products', product_routes_1.productRouter);
 app.use('/api/sales', sale_routes_1.saleRouter);
-mongoose_1.default.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USER}:${process.env.MONGO_ATLAS_PASSWORD}@learn.kndkh.mongodb.net/${process.env.MONGO_ATLAS_COLLECTION}?retryWrites=true&w=majority`)
+mongoose_1.default.connect(`mongodb+srv://${process.env.MONGO_ATLAS_USER}:${process.env.MONGO_ATLAS_PASSWORD}@${process.env.MONGO_ATLAS_URL}/${process.env.MONGO_ATLAS_COLLECTION}?retryWrites=true&w=majority`)
     .then(() => console.log('db connection success'))
     .catch((err) => console.log(`db connection fail : ${err.message}`));
 app.listen(process.env.APP_PORT, () => {

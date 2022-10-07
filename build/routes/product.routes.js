@@ -18,11 +18,10 @@ const mongoose_1 = require("mongoose");
 const product_services_1 = require("../services/product.services");
 const router = express_1.default.Router();
 exports.productRouter = router;
-const productServices = new product_services_1.ProductServices();
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, description = '', price, stock } = req.body;
-        const product = yield productServices.addProduct({
+        const product = yield (0, product_services_1.addProduct)({
             name, description, price, stock
         });
         return res.status(201).send({
@@ -44,12 +43,12 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield productServices.getProducts();
+    const products = yield (0, product_services_1.getProducts)();
     return res.status(200).send(products);
 }));
 router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const product = yield productServices.getProductById(req.params.id);
+        const product = yield (0, product_services_1.getProductById)(req.params.id);
         return res.status(200).send({
             status: 'success',
             data: product,
@@ -64,7 +63,7 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 }));
 router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const product = yield productServices.updateProductById(req.params.id, req.body);
+        const product = yield (0, product_services_1.updateProductById)(req.params.id, req.body);
         return res.status(200).send({
             status: 'success',
             data: product,
@@ -79,7 +78,7 @@ router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* (
 }));
 router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const product = yield productServices.deleteProductById(req.params.id);
+        const product = yield (0, product_services_1.deleteProductById)(req.params.id);
         return res.status(200).send({
             status: 'success',
             data: product,

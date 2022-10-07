@@ -15,15 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.saleRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const sale_services_1 = require("../services/sale.services");
-const product_services_1 = require("../services/product.services");
 const router = express_1.default.Router();
 exports.saleRouter = router;
-const saleServices = new sale_services_1.SaleServices();
-const productServices = new product_services_1.ProductServices();
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { products } = req.body;
-        const sale = yield saleServices.addSale(products);
+        const sale = yield (0, sale_services_1.addSale)(products);
         return res.status(201).send({
             status: 'success',
             data: sale,
@@ -37,7 +34,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const sales = yield saleServices.getSales();
+    const sales = yield (0, sale_services_1.getSales)();
     return res.status(200).send({
         status: 'success',
         data: sales,
@@ -45,7 +42,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const sale = yield saleServices.getSaleById(req.params.id);
+        const sale = yield (0, sale_services_1.getSaleById)(req.params.id);
         return res.status(200).send({
             status: 'success',
             data: sale,
@@ -60,7 +57,7 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 }));
 router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const sale = yield saleServices.deleteSaleById(req.params.id);
+        const sale = yield (0, sale_services_1.deleteSaleById)(req.params.id);
         return res.status(200).send({
             status: 'success',
             data: sale,

@@ -1,14 +1,19 @@
 import express, { Request, Response } from 'express'
 import { Error } from 'mongoose'
-import { ProductServices } from '../services/product.services'
+import {
+  addProduct,
+  getProducts,
+  getProductById,
+  updateProductById,
+  deleteProductById,
+} from '../services/product.services'
 
 const router = express.Router()
-const productServices = new ProductServices()
 
 router.post('/', async (req: Request, res: Response) => {
   try {
     const { name, description = '', price, stock } = req.body
-    const product = await productServices.addProduct({
+    const product = await addProduct({
       name, description, price, stock
     })
 
@@ -32,13 +37,13 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 router.get('/', async (req: Request, res: Response) => {
-  const products = await productServices.getProducts()
+  const products = await getProducts()
   return res.status(200).send(products)
 })
 
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const product = await productServices.getProductById(req.params.id)
+    const product = await getProductById(req.params.id)
     
     return res.status(200).send({
       status: 'success',
@@ -54,7 +59,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.patch('/:id', async (req: Request, res: Response) => {
   try {
-    const product = await productServices.updateProductById(req.params.id, req.body)
+    const product = await updateProductById(req.params.id, req.body)
     
     return res.status(200).send({
       status: 'success',
@@ -70,7 +75,7 @@ router.patch('/:id', async (req: Request, res: Response) => {
 
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const product = await productServices.deleteProductById(req.params.id)
+    const product = await deleteProductById(req.params.id)
     
     return res.status(200).send({
       status: 'success',
